@@ -1,23 +1,36 @@
-# Grandoku
+# Grandaku Master
 
-Grandoku is a single-file browser Sudoku game with:
+**Grandaku Master** is a single-file browser Sudoku game focused on fast, clean play with streaks, notes, difficulty levels, keyboard controls and a custom soundtrack.
+
+## Features
 
 - Easy, Medium and Hard difficulty modes
+- Larger, high-visibility Sudoku digits
+- Clear borders around all nine 3×3 blocks
 - Notes / pencil mode
-- Hints and erase controls
+- Erase control
 - Mistake tracking
 - Timer and daily streak tracking
 - Keyboard controls
 - Custom soundtrack upload
+- Grandaku Master championship celebration screen
 - PWA metadata
+
+## Winning
+
+Complete the puzzle to earn the title:
+
+> **You are the Grandaku Master World Champion**
+
+Your completion time is shown on the championship screen, with an option to defend your title in a new round.
 
 ## Run
 
 Open `index.html` in a modern browser.
 
-## Status
+## Release
 
-This repository currently contains the working single-file build supplied and smoke-tested on 11 October 2026.
+Current release: **Grandaku Master v1.0.0**
 
 ## Known follow-up items
 
