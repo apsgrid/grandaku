@@ -1,3 +1,19 @@
+# Grandaku Master v1.0.2
+
+Move-validation release.
+
+## Changes
+
+- Blocks illegal Sudoku moves before they are written to the board
+- Rejects duplicate numbers in the same row
+- Rejects duplicate numbers in the same column
+- Rejects duplicate numbers in the same 3×3 block
+- Incorrect solution guesses no longer remain on the board
+- Rejected guesses still count toward the existing mistake limit
+- Notes remain free-form so they can still be used as pencil marks
+
+---
+
 # Grandaku Master v1.0.1
 
 Interface refinement release.

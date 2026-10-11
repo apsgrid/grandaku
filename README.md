@@ -31,7 +31,7 @@ Open `index.html` in a modern browser.
 
 ## Release
 
-Current release: **Grandaku Master v1.0.1**
+Current release: **Grandaku Master v1.0.2**
 
 ## Known follow-up items
 
