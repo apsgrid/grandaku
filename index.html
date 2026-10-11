@@ -24,20 +24,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.6rem;
+            font-weight: 700;
             transition: all 0.15s ease;
             user-select: none;
             cursor: pointer;
         }
         @media (min-width: 640px) {
             .sudoku-cell {
-                font-size: 1.75rem;
+                font-size: 2.15rem;
             }
         }
-        /* Custom thick borders for 3x3 grids */
-        .border-r-thick { border-right: 3px solid #4f46e5; }
-        .border-b-thick { border-bottom: 3px solid #4f46e5; }
+        /* Full outlines for each 3x3 block */
+        .border-l-thick { border-left: 3px solid #818cf8; }
+        .border-r-thick { border-right: 3px solid #818cf8; }
+        .border-t-thick { border-top: 3px solid #818cf8; }
+        .border-b-thick { border-bottom: 3px solid #818cf8; }
     </style>
 </head>
 <body class="text-slate-100 flex flex-col min-h-screen">
@@ -137,12 +139,8 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3 w-full mb-3">
-            <button onclick="giveHint()" class="bg-slate-800 hover:bg-slate-700 text-indigo-300 font-medium py-2.5 px-4 rounded-xl border border-indigo-500/20 shadow transition flex items-center justify-center space-x-2 text-sm active:scale-95">
-                <i class="fa-solid fa-lightbulb text-amber-400"></i>
-                <span>Hint</span>
-            </button>
-            <button onclick="eraseCell()" class="bg-slate-800 hover:bg-slate-700 text-rose-300 font-medium py-2.5 px-4 rounded-xl border border-indigo-500/20 shadow transition flex items-center justify-center space-x-2 text-sm active:scale-95">
+        <div class="w-full mb-3">
+            <button onclick="eraseCell()" class="w-full bg-slate-800 hover:bg-slate-700 text-rose-300 font-medium py-2.5 px-4 rounded-xl border border-indigo-500/20 shadow transition flex items-center justify-center space-x-2 text-sm active:scale-95">
                 <i class="fa-solid fa-eraser"></i>
                 <span>Erase</span>
             </button>
@@ -332,8 +330,10 @@
                 
                 let row = Math.floor(i / 9);
                 let col = i % 9;
-                if (col === 2 || col === 5) cell.classList.add('border-r-thick');
-                if (row === 2 || row === 5) cell.classList.add('border-b-thick');
+                if (col === 0 || col === 3 || col === 6) cell.classList.add('border-l-thick');
+                if (col === 8) cell.classList.add('border-r-thick');
+                if (row === 0 || row === 3 || row === 6) cell.classList.add('border-t-thick');
+                if (row === 8) cell.classList.add('border-b-thick');
 
                 if (initialBoard[i] !== 0) {
                     cell.style.backgroundColor = '#1e293b';
@@ -481,21 +481,6 @@
 
             board[selectedCell] = 0;
             notes[selectedCell].clear();
-            renderGrid();
-            highlightCells();
-        }
-
-        function giveHint() {
-            if (selectedCell === null || isGameOver) return;
-            if (initialBoard[selectedCell] !== 0) return;
-
-            board[selectedCell] = solution[selectedCell];
-            notes[selectedCell].clear();
-            
-            if (board.every((val, idx) => val === solution[idx])) {
-                triggerVictory();
-            }
-
             renderGrid();
             highlightCells();
         }
