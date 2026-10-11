@@ -8,6 +8,7 @@
 - Larger, high-visibility Sudoku digits
 - Clear borders around all nine 3×3 blocks
 - Notes / pencil mode
+- Requestable hints
 - Erase control
 - Mistake tracking
 - Timer and daily streak tracking
@@ -30,7 +31,7 @@ Open `index.html` in a modern browser.
 
 ## Release
 
-Current release: **Grandaku Master v1.0.0**
+Current release: **Grandaku Master v1.0.1**
 
 ## Known follow-up items
 

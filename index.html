@@ -36,10 +36,11 @@
             }
         }
         /* Full outlines for each 3x3 block */
-        .border-l-thick { border-left: 3px solid #818cf8; }
-        .border-r-thick { border-right: 3px solid #818cf8; }
-        .border-t-thick { border-top: 3px solid #818cf8; }
-        .border-b-thick { border-bottom: 3px solid #818cf8; }
+        .sudoku-cell { border: 2px solid #334155; }
+        .border-l-thick { border-left: 5px solid #cbd5e1; }
+        .border-r-thick { border-right: 5px solid #cbd5e1; }
+        .border-t-thick { border-top: 5px solid #cbd5e1; }
+        .border-b-thick { border-bottom: 5px solid #cbd5e1; }
 
         @keyframes champion-pop {
             0% { opacity: 0; transform: scale(0.72) translateY(28px); }
@@ -139,7 +140,7 @@
         </div>
 
         <div class="w-full bg-slate-900 p-3 sm:p-4 rounded-3xl shadow-2xl border-2 border-indigo-500/40 relative mb-4">
-            <div id="sudoku-grid" class="grid grid-cols-9 gap-0 bg-indigo-500 rounded-xl overflow-hidden shadow-inner border border-indigo-500">
+            <div id="sudoku-grid" class="grid grid-cols-9 gap-0 bg-slate-700 rounded-xl overflow-hidden shadow-inner border-2 border-slate-300">
                 <!-- Grid cells populated via JS -->
             </div>
             
@@ -168,23 +169,27 @@
             </div>
         </div>
 
-        <div class="w-full mb-3">
-            <button onclick="eraseCell()" class="w-full bg-slate-800 hover:bg-slate-700 text-rose-300 font-medium py-2.5 px-4 rounded-xl border border-indigo-500/20 shadow transition flex items-center justify-center space-x-2 text-sm active:scale-95">
+        <div class="grid grid-cols-2 gap-3 w-full mb-3">
+            <button onclick="giveHint()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium py-2.5 px-4 rounded-xl border border-slate-600 shadow transition flex items-center justify-center space-x-2 text-sm active:scale-95">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span>Hint</span>
+            </button>
+            <button onclick="eraseCell()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium py-2.5 px-4 rounded-xl border border-slate-600 shadow transition flex items-center justify-center space-x-2 text-sm active:scale-95">
                 <i class="fa-solid fa-eraser"></i>
                 <span>Erase</span>
             </button>
         </div>
 
         <div class="grid grid-cols-9 gap-1.5 sm:gap-2 w-full" id="virtual-keypad">
-            <button onclick="inputNumber(1)" data-num="1" class="keypad-btn bg-slate-800/90 hover:bg-indigo-600/30 hover:border-indigo-500 text-indigo-300 font-bold py-3 sm:py-3.5 rounded-xl border border-indigo-500/20 shadow-md transition text-lg sm:text-xl active:scale-95">1</button>
-            <button onclick="inputNumber(2)" data-num="2" class="keypad-btn bg-slate-800/90 hover:bg-indigo-600/30 hover:border-indigo-500 text-indigo-300 font-bold py-3 sm:py-3.5 rounded-xl border border-indigo-500/20 shadow-md transition text-lg sm:text-xl active:scale-95">2</button>
-            <button onclick="inputNumber(3)" data-num="3" class="keypad-btn bg-slate-800/90 hover:bg-indigo-600/30 hover:border-indigo-500 text-indigo-300 font-bold py-3 sm:py-3.5 rounded-xl border border-indigo-500/20 shadow-md transition text-lg sm:text-xl active:scale-95">3</button>
-            <button onclick="inputNumber(4)" data-num="4" class="keypad-btn bg-slate-800/90 hover:bg-indigo-600/30 hover:border-indigo-500 text-indigo-300 font-bold py-3 sm:py-3.5 rounded-xl border border-indigo-500/20 shadow-md transition text-lg sm:text-xl active:scale-95">4</button>
-            <button onclick="inputNumber(5)" data-num="5" class="keypad-btn bg-slate-800/90 hover:bg-indigo-600/30 hover:border-indigo-500 text-indigo-300 font-bold py-3 sm:py-3.5 rounded-xl border border-indigo-500/20 shadow-md transition text-lg sm:text-xl active:scale-95">5</button>
-            <button onclick="inputNumber(6)" data-num="6" class="keypad-btn bg-slate-800/90 hover:bg-indigo-600/30 hover:border-indigo-500 text-indigo-300 font-bold py-3 sm:py-3.5 rounded-xl border border-indigo-500/20 shadow-md transition text-lg sm:text-xl active:scale-95">6</button>
-            <button onclick="inputNumber(7)" data-num="7" class="keypad-btn bg-slate-800/90 hover:bg-indigo-600/30 hover:border-indigo-500 text-indigo-300 font-bold py-3 sm:py-3.5 rounded-xl border border-indigo-500/20 shadow-md transition text-lg sm:text-xl active:scale-95">7</button>
-            <button onclick="inputNumber(8)" data-num="8" class="keypad-btn bg-slate-800/90 hover:bg-indigo-600/30 hover:border-indigo-500 text-indigo-300 font-bold py-3 sm:py-3.5 rounded-xl border border-indigo-500/20 shadow-md transition text-lg sm:text-xl active:scale-95">8</button>
-            <button onclick="inputNumber(9)" data-num="9" class="keypad-btn bg-slate-800/90 hover:bg-indigo-600/30 hover:border-indigo-500 text-indigo-300 font-bold py-3 sm:py-3.5 rounded-xl border border-indigo-500/20 shadow-md transition text-lg sm:text-xl active:scale-95">9</button>
+            <button onclick="inputNumber(1)" data-num="1" class="keypad-btn bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold py-3 sm:py-3.5 rounded-xl border border-slate-600 shadow-md transition text-lg sm:text-xl active:scale-95">1</button>
+            <button onclick="inputNumber(2)" data-num="2" class="keypad-btn bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold py-3 sm:py-3.5 rounded-xl border border-slate-600 shadow-md transition text-lg sm:text-xl active:scale-95">2</button>
+            <button onclick="inputNumber(3)" data-num="3" class="keypad-btn bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold py-3 sm:py-3.5 rounded-xl border border-slate-600 shadow-md transition text-lg sm:text-xl active:scale-95">3</button>
+            <button onclick="inputNumber(4)" data-num="4" class="keypad-btn bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold py-3 sm:py-3.5 rounded-xl border border-slate-600 shadow-md transition text-lg sm:text-xl active:scale-95">4</button>
+            <button onclick="inputNumber(5)" data-num="5" class="keypad-btn bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold py-3 sm:py-3.5 rounded-xl border border-slate-600 shadow-md transition text-lg sm:text-xl active:scale-95">5</button>
+            <button onclick="inputNumber(6)" data-num="6" class="keypad-btn bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold py-3 sm:py-3.5 rounded-xl border border-slate-600 shadow-md transition text-lg sm:text-xl active:scale-95">6</button>
+            <button onclick="inputNumber(7)" data-num="7" class="keypad-btn bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold py-3 sm:py-3.5 rounded-xl border border-slate-600 shadow-md transition text-lg sm:text-xl active:scale-95">7</button>
+            <button onclick="inputNumber(8)" data-num="8" class="keypad-btn bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold py-3 sm:py-3.5 rounded-xl border border-slate-600 shadow-md transition text-lg sm:text-xl active:scale-95">8</button>
+            <button onclick="inputNumber(9)" data-num="9" class="keypad-btn bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold py-3 sm:py-3.5 rounded-xl border border-slate-600 shadow-md transition text-lg sm:text-xl active:scale-95">9</button>
         </div>
 
     </main>
@@ -370,7 +375,7 @@
 
             for (let i = 0; i < 81; i++) {
                 const cell = document.createElement('div');
-                cell.className = 'sudoku-cell border border-indigo-900/60 relative';
+                cell.className = 'sudoku-cell relative text-slate-100 font-bold';
                 
                 let row = Math.floor(i / 9);
                 let col = i % 9;
@@ -379,109 +384,37 @@
                 if (row === 0 || row === 3 || row === 6) cell.classList.add('border-t-thick');
                 if (row === 8) cell.classList.add('border-b-thick');
 
-                if (initialBoard[i] !== 0) {
-                    cell.style.backgroundColor = '#1e293b';
-                    cell.className += ' text-slate-500 font-medium'; // Greyed out initial numbers
-                    cell.innerText = initialBoard[i];
-                } else if (board[i] !== 0) {
-                    cell.style.backgroundColor = '#0f172a';
-                    cell.className += ' text-indigo-300 font-bold';
+                cell.style.backgroundColor = '#0f172a';
+                if (board[i] !== 0) {
                     cell.innerText = board[i];
-                } else {
-                    cell.style.backgroundColor = '#0f172a';
-                    if (notes[i].size > 0) {
-                        cell.innerHTML = renderNotesHTML(notes[i]);
-                    }
+                } else if (notes[i].size > 0) {
+                    cell.innerHTML = renderNotesHTML(notes[i]);
                 }
 
                 cell.addEventListener('click', () => selectCellIndex(i));
                 gridContainer.appendChild(cell);
             }
-            updateKeypadAvailability();
-        }
-
-        function updateKeypadAvailability() {
-            let counts = Array(10).fill(0);
-            for (let val of board) {
-                if (val !== 0) counts[val]++;
-            }
-
-            let restrictedNumbers = new Set();
-            if (selectedCell !== null) {
-                let selRow = Math.floor(selectedCell / 9);
-                let selCol = selectedCell % 9;
-                let selBoxR = Math.floor(selRow / 3);
-                let selBoxC = Math.floor(selCol / 3);
-
-                for (let i = 0; i < 81; i++) {
-                    let r = Math.floor(i / 9);
-                    let c = i % 9;
-                    let boxR = Math.floor(r / 3);
-                    let boxC = Math.floor(c / 3);
-                    if (r === selRow || c === selCol || (boxR === selBoxR && boxC === selBoxC)) {
-                        if (board[i] !== 0) {
-                            restrictedNumbers.add(board[i]);
-                        }
-                    }
-                }
-            }
-
-            const keypadButtons = document.querySelectorAll('.keypad-btn');
-            keypadButtons.forEach(btn => {
-                let num = parseInt(btn.getAttribute('data-num'));
-                
-                // Reset classes
-                btn.classList.remove('opacity-35', 'opacity-50', 'bg-slate-900', 'bg-slate-850', 'text-slate-600', 'text-slate-400', 'border-slate-800');
-                
-                if (counts[num] >= 9) {
-                    btn.classList.add('opacity-35', 'bg-slate-900', 'text-slate-600');
-                } else if (selectedCell !== null && restrictedNumbers.has(num)) {
-                    btn.classList.add('opacity-50', 'bg-slate-850', 'text-slate-400');
-                }
-            });
         }
 
         function selectCellIndex(index) {
             if (isGameOver) return;
             selectedCell = index;
             highlightCells();
-            updateKeypadAvailability();
         }
 
         function highlightCells() {
             const cells = document.getElementById('sudoku-grid').children;
-            const selectedVal = selectedCell !== null ? board[selectedCell] : null;
 
             for (let i = 0; i < 81; i++) {
-                cells[i].classList.remove('ring-2', 'ring-indigo-400', 'z-10');
-                
-                if (initialBoard[i] !== 0) {
-                    cells[i].style.backgroundColor = '#1e293b';
-                } else {
-                    cells[i].style.backgroundColor = '#0f172a';
-                }
+                cells[i].style.backgroundColor = '#0f172a';
+                cells[i].style.outline = 'none';
+                cells[i].style.zIndex = '0';
+            }
 
-                if (selectedCell === null) continue;
-
-                let selRow = Math.floor(selectedCell / 9);
-                let selCol = selectedCell % 9;
-                let currRow = Math.floor(i / 9);
-                let currCol = i % 9;
-                let selBoxR = Math.floor(selRow / 3);
-                let selBoxC = Math.floor(selCol / 3);
-                let currBoxR = Math.floor(currRow / 3);
-                let currBoxC = Math.floor(currCol / 3);
-
-                if (i === selectedCell) {
-                    cells[i].classList.add('ring-2', 'ring-indigo-400', 'z-10');
-                    cells[i].style.backgroundColor = initialBoard[i] !== 0 ? '#334155' : '#4338ca';
-                } else if (currRow === selRow || currCol === selCol || (selBoxR === currBoxR && selBoxC === currBoxC)) {
-                    cells[i].style.backgroundColor = initialBoard[i] !== 0 ? '#273548' : '#1e1b4b';
-                }
-
-                if (selectedVal !== 0 && board[i] === selectedVal) {
-                    cells[i].style.backgroundColor = '#312e81';
-                }
+            if (selectedCell !== null && cells[selectedCell]) {
+                cells[selectedCell].style.outline = '3px solid #f8fafc';
+                cells[selectedCell].style.outlineOffset = '-3px';
+                cells[selectedCell].style.zIndex = '10';
             }
         }
 
@@ -525,6 +458,31 @@
 
             board[selectedCell] = 0;
             notes[selectedCell].clear();
+            renderGrid();
+            highlightCells();
+        }
+
+        function giveHint() {
+            if (isGameOver) return;
+
+            let target = selectedCell;
+            if (target === null || initialBoard[target] !== 0 || board[target] === solution[target]) {
+                const candidates = [];
+                for (let i = 0; i < 81; i++) {
+                    if (initialBoard[i] === 0 && board[i] !== solution[i]) candidates.push(i);
+                }
+                if (candidates.length === 0) return;
+                target = candidates[Math.floor(Math.random() * candidates.length)];
+            }
+
+            selectedCell = target;
+            board[target] = solution[target];
+            notes[target].clear();
+
+            if (board.every((val, idx) => val === solution[idx])) {
+                triggerVictory();
+            }
+
             renderGrid();
             highlightCells();
         }
